@@ -1,0 +1,123 @@
+package com.dao;
+
+import com.model.Product;
+import java.sql.*;
+import java.util.*;
+
+public class ProductDAO {
+    private String jdbcURL = "jdbc:mysql://localhost:3306/productdb";
+    private String jdbcUsername = "root";
+    private String jdbcPassword = "";
+
+    private static final String INSERT = "INSERT INTO Products VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL = "SELECT * FROM Products";
+    private static final String UPDATE = "UPDATE Products SET ProductName=?, Category=?, Price=?, Quantity=? WHERE ProductID=?";
+    private static final String DELETE = "DELETE FROM Products WHERE ProductID=?";
+    private static final String REPORT_PRICE = "SELECT * FROM Products WHERE Price > ?";
+    private static final String REPORT_CATEGORY = "SELECT * FROM Products WHERE Category=?";
+    private static final String REPORT_TOP = "SELECT * FROM Products ORDER BY Quantity DESC LIMIT ?";
+
+    protected Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+    }
+
+    public void addProduct(Product p) throws SQLException {
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(INSERT)) {
+            stmt.setInt(1, p.getProductID());
+            stmt.setString(2, p.getProductName());
+            stmt.setString(3, p.getCategory());
+            stmt.setDouble(4, p.getPrice());
+            stmt.setInt(5, p.getQuantity());
+            stmt.executeUpdate();
+        }
+    }
+
+    public List<Product> getAllProducts() throws SQLException {
+        List<Product> list = new ArrayList<>();
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(SELECT_ALL)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setCategory(rs.getString("Category"));
+                p.setPrice(rs.getDouble("Price"));
+                p.setQuantity(rs.getInt("Quantity"));
+                list.add(p);
+            }
+        }
+        return list;
+    }
+
+    public void updateProduct(Product p) throws SQLException {
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(UPDATE)) {
+            stmt.setString(1, p.getProductName());
+            stmt.setString(2, p.getCategory());
+            stmt.setDouble(3, p.getPrice());
+            stmt.setInt(4, p.getQuantity());
+            stmt.setInt(5, p.getProductID());
+            stmt.executeUpdate();
+        }
+    }
+
+    public void deleteProduct(int productID) throws SQLException {
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(DELETE)) {
+            stmt.setInt(1, productID);
+            stmt.executeUpdate();
+        }
+    }
+
+    public List<Product> getProductsByPrice(double price) throws SQLException {
+        List<Product> list = new ArrayList<>();
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(REPORT_PRICE)) {
+            stmt.setDouble(1, price);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setCategory(rs.getString("Category"));
+                p.setPrice(rs.getDouble("Price"));
+                p.setQuantity(rs.getInt("Quantity"));
+                list.add(p);
+            }
+        }
+        return list;
+    }
+
+    public List<Product> getProductsByCategory(String category) throws SQLException {
+        List<Product> list = new ArrayList<>();
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(REPORT_CATEGORY)) {
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setCategory(rs.getString("Category"));
+                p.setPrice(rs.getDouble("Price"));
+                p.setQuantity(rs.getInt("Quantity"));
+                list.add(p);
+            }
+        }
+        return list;
+    }
+
+    public List<Product> getTopProducts(int limit) throws SQLException {
+        List<Product> list = new ArrayList<>();
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(REPORT_TOP)) {
+            stmt.setInt(1, limit);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setCategory(rs.getString("Category"));
+                p.setPrice(rs.getDouble("Price"));
+                p.setQuantity(rs.getInt("Quantity"));
+                list.add(p);
+            }
+        }
+        return list;
+    }
+}

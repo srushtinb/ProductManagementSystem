@@ -1,0 +1,26 @@
+package com.servlet;
+
+import com.dao.ProductDAO;
+import com.model.Product;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet("/displayProducts")
+public class DisplayProductsServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private ProductDAO productDAO;
+
+    public void init() {
+        productDAO = new ProductDAO();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> list = productDAO.selectAllProducts();
+        request.setAttribute("products", list);
+        request.getRequestDispatcher("productdisplay.jsp").forward(request, response);
+    }
+}

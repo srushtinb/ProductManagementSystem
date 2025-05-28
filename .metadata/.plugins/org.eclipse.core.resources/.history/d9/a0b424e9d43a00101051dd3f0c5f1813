@@ -1,0 +1,27 @@
+package com.servlet;
+
+import com.model.Product;
+import com.dao.ProductDAO;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class AddProductServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Product p = new Product();
+            p.setProductID(Integer.parseInt(request.getParameter("id")));
+            p.setProductName(request.getParameter("name"));
+            p.setCategory(request.getParameter("category"));
+            p.setPrice(Double.parseDouble(request.getParameter("price")));
+            p.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+
+            new ProductDAO().addProduct(p);
+            request.setAttribute("message", "Product added successfully.");
+        } catch (Exception e) {
+            request.setAttribute("message", "Error: " + e.getMessage());
+        }
+        request.getRequestDispatcher("productadd.jsp").forward(request, response);
+    }
+}

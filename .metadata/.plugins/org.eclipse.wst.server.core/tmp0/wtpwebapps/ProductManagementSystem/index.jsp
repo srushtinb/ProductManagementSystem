@@ -1,0 +1,74 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 35px;
+      font-weight: 700;
+      color: #222;
+      font-size: 1.8rem;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      background-color: #0069d9;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 105, 217, 0.3);
+      transition: background-color 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-block:hover,
+    .btn-block:focus {
+      background-color: #004a9f;
+      box-shadow: 0 6px 14px rgba(0, 74, 159, 0.5);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Product Management</h1>
+    <a href="productadd.jsp" class="btn-block">Add Product</a>
+    <a href="productupdate.jsp" class="btn-block">Update Product</a>
+    <a href="productdelete.jsp" class="btn-block">Delete Product</a>
+    <a href="DisplayProductsServlet" class="btn-block">View All Products</a>
+    <a href="reports.jsp" class="btn-block">Reports</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

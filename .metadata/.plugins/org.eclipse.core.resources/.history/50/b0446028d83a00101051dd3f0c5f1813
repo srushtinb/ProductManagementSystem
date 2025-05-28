@@ -1,0 +1,42 @@
+package com.servlet;
+
+import com.dao.ProductDAO;
+import com.model.Product;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+@WebServlet("/addProduct")
+public class AddProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private ProductDAO productDAO;
+
+    public void init() {
+        productDAO = new ProductDAO();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("productID"));
+            String name = request.getParameter("productName");
+            String category = request.getParameter("category");
+            double price = Double.parseDouble(request.getParameter("price"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+            Product product = new Product(id, name, category, price, quantity);
+            boolean success = productDAO.insertProduct(product);
+
+            if(success) {
+                request.setAttribute("message", "Product added successfully!");
+            } else {
+                request.setAttribute("message", "Failed to add product.");
+            }
+            request.getRequestDispatcher("productadd.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+            request.setAttribute("message", "Invalid input: " + e.getMessage());
+            request.getRequestDispatcher("productadd.jsp").forward(request, response);
+        }
+    }
+}

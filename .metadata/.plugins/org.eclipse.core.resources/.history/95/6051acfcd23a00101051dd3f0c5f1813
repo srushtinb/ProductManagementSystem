@@ -1,0 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head><title>Update Product</title></head>
+<body>
+  <h2>Update Product</h2>
+  <form action="UpdateProductServlet" method="post">
+    Product ID: <input type="number" name="id" required><br>
+    New Name: <input type="text" name="name"><br>
+    New Category: <input type="text" name="category"><br>
+    New Price: <input type="number" step="0.01" name="price"><br>
+    New Quantity: <input type="number" name="quantity"><br>
+    <input type="submit" value="Update Product">
+  </form>
+  <p style="color:green;">${message}</p>
+</body>
+</html>

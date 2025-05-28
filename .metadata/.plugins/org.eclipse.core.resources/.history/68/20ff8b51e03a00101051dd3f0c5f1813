@@ -1,0 +1,21 @@
+package com.servlet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+@WebServlet("/reportCriteria")
+public class ReportCriteriaServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        if (type == null || type.isEmpty()) {
+            response.sendRedirect("reports.jsp");
+            return;
+        }
+        request.setAttribute("type", type);
+        request.getRequestDispatcher("reportCriteria.jsp").forward(request, response);
+    }
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to Product Management</h1>
+  <nav>
+    <a href="productadd.jsp">Add</a>
+    <a href="productupdate.jsp">Update</a>
+    <a href="productdelete.jsp">Delete</a>
+    <a href="productdisplay.jsp">Display</a>
+    <a href="report_form.jsp">Reports</a>
+  </nav>
+</body>
+</html>

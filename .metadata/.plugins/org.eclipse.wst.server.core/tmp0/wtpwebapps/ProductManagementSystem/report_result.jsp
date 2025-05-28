@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.model.Product" %>
+<%
+    @SuppressWarnings("unchecked")
+    List<Product> products = (List<Product>) request.getAttribute("products");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Report Results</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Report Results</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ProductID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+                if (products != null && !products.isEmpty()) {
+                    for (Product p : products) {
+            %>
+            <tr>
+                <td><%=p.getProductID()%></td>
+                <td><%=p.getProductName()%></td>
+                <td><%=p.getCategory()%></td>
+                <td><%=p.getPrice()%></td>
+                <td><%=p.getQuantity()%></td>
+            </tr>
+            <%
+                    }
+                } else {
+            %>
+            <tr><td colspan="5" class="text-center">No Products Found</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+    <a href="reports.jsp" class="btn btn-primary mt-3">Back to Reports</a>
+</div>
+</body>
+</html>

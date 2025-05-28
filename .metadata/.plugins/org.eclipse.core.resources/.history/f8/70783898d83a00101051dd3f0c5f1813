@@ -1,0 +1,68 @@
+package com.servlet;
+
+import com.dao.ProductDAO;
+import com.model.Product;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+@WebServlet("/AddProductServlet")
+public class AddProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    // Handle POST requests - add product
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8"); // support UTF-8 input
+        String message = "";
+
+        try {
+            String idStr = request.getParameter("id");
+            String name = request.getParameter("name");
+            String category = request.getParameter("category");
+            String priceStr = request.getParameter("price");
+            String quantityStr = request.getParameter("quantity");
+
+            // Basic null and empty check
+            if (idStr == null || idStr.isEmpty() ||
+                name == null || name.isEmpty() ||
+                category == null || category.isEmpty() ||
+                priceStr == null || priceStr.isEmpty() ||
+                quantityStr == null || quantityStr.isEmpty()) {
+                throw new IllegalArgumentException("All fields are required.");
+            }
+
+            // Parsing numeric values
+            int id = Integer.parseInt(idStr);
+            double price = Double.parseDouble(priceStr);
+            int quantity = Integer.parseInt(quantityStr);
+
+            // Create product object
+            Product p = new Product();
+            p.setProductID(id);
+            p.setProductName(name);
+            p.setCategory(category);
+            p.setPrice(price);
+            p.setQuantity(quantity);
+
+            // Add product to database
+            new ProductDAO().addProduct(p);
+
+            message = "Product added successfully.";
+        } catch (NumberFormatException e) {
+            message = "Invalid number format: " + e.getMessage();
+        } catch (Exception e) {
+            message = "Error: " + e.getMessage();
+        }
+
+        // Set message attribute and forward back to JSP
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("productadd.jsp").forward(request, response);
+    }
+
+    // Optional: redirect GET requests to the add product form page
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("productadd.jsp");
+    }
+}
