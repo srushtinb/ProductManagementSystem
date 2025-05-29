@@ -4,43 +4,38 @@ This project demonstrates a simple **Product Management System** implemented usi
 
 ---
 
-## ✅ Project Guidelines
 
 - The code implementation followed best practices, including:
   - ✅ Use of **Prepared Statements**
   - ✅ Proper **Exception Handling**
   - ✅ Adherence to **MVC Architecture Principles**
 
-- All modules (Add, Update, Delete, Display, Report Generation) are demonstrated with:
-  - 💬 Responses to user queries
+- All modules (Add, Update, Delete, Display, Report Generation) are demonstrated.
+
 
 ---
 
-## 📸 Output Screenshots
+## 📸 Outputs
 
 ###  Index Page
 ![Index](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/index.png)
 
 ###  Add Product
-![Add Product]([output/Screenshot%202025-05-29%20130551.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/productAdd.png))
+![Add Product](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/productAdd.png)
 
 ###  Delete Product
-![Delete Product]([output/Screenshot%202025-05-29%20130603.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png))
+![Delete Product](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png)
 
-###  Delete Product
-![Delete Product](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/updateproduct.png)
+###  Update Product
+![Update Product](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/updateproduct.png)
 
-### 🗑️ Delete Product
-![Delete Product]([output/Screenshot%202025-05-29%20130603.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png))
+###  Display Product
+![Display Product](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/displayproducts.png)
 
-### 🗑️ Delete Product
-![Delete Product]([output/Screenshot%202025-05-29%20130603.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png))
+###  Report 
+![Report](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/reportResult.png)
 
-### 🗑️ Delete Product
-![Delete Product]([output/Screenshot%202025-05-29%20130603.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png))
 
-### 🗑️ Delete Product
-![Delete Product]([output/Screenshot%202025-05-29%20130603.png](https://github.com/srushtinb/ProductManagementSystem/blob/main/Outputs/deleteProduct.png))
 
 
 ---
@@ -53,7 +48,5 @@ This project demonstrates a simple **Product Management System** implemented usi
 - JDBC
 - Apache Tomcat
 
----
 
-## 💡 Folder Structure
 
